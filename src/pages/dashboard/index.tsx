@@ -7,7 +7,7 @@ import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChar
 import { TabView } from "../../components/dashboard/TabView";
 import { RecentSales } from "../../components/dashboard/RecentSales";
 import { IChartDatum, TTab } from "../../interfaces";
-
+import "./dashboard.css";
 const filters: CrudFilter[] = [
   {
     field: "start",
@@ -43,20 +43,20 @@ export const Dashboard: React.FC = () => {
         date: new Intl.DateTimeFormat("en-US", {
           month: "short",
           year: "numeric",
-          day: "numeric",
         }).format(new Date(item.date)),
         value: item?.value,
       }));
     }, [d]);
   };
 
+  console.log(dailyRevenue);
   const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
   const memoizedOrdersData = useMemoizedChartData(dailyOrders);
   const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
 
   const tabs: TTab[] = [
     {
-      id: 1,
+      id: 0,
       label: "Daily Revenue",
       content: (
         <ResponsiveAreaChart
@@ -70,7 +70,7 @@ export const Dashboard: React.FC = () => {
       ),
     },
     {
-      id: 2,
+      id: 1,
       label: "Daily Orders",
       content: (
         <ResponsiveBarChart
@@ -84,7 +84,7 @@ export const Dashboard: React.FC = () => {
       ),
     },
     {
-      id: 3,
+      id: 2,
       label: "New Customers",
       content: (
         <ResponsiveAreaChart
@@ -101,13 +101,12 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <Stats
+      <TabView
+        tabs={tabs}
         dailyRevenue={dailyRevenue}
         dailyOrders={dailyOrders}
         newCustomers={newCustomers}
       />
-      <TabView tabs={tabs} />
-      <RecentSales />
     </>
   );
 };

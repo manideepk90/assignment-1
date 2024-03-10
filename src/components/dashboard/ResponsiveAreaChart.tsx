@@ -1,12 +1,12 @@
 import React from "react";
 import {
   ResponsiveContainer,
-  AreaChart,
   CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
-  Area,
+  LineChart,
+  Line,
 } from "recharts";
 import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
 import { IChartDatum } from "../../interfaces";
@@ -26,10 +26,10 @@ export const ResponsiveAreaChart = ({
   colors,
 }: TResponsiveAreaChartProps) => {
   return (
-    <ResponsiveContainer height={400}>
-      <AreaChart
+    <ResponsiveContainer height={150}>
+      <LineChart
         data={data}
-        height={400}
+        height={150}
         margin={{
           top: 10,
           right: 30,
@@ -37,46 +37,47 @@ export const ResponsiveAreaChart = ({
           bottom: 0,
         }}
       >
-        <CartesianGrid strokeDasharray="0 0 0" />
+        <CartesianGrid
+          strokeDasharray="0 0 0"
+          stroke="#F5F5F5"
+          vertical={false}
+        />
         <XAxis
           dataKey="date"
           tickCount={data?.length ?? 0}
+          axisLine={false}
+          tickLine={false}
           tick={{
-            stroke: "light-grey",
-            strokeWidth: 0.5,
+            stroke: "#676767",
+            strokeWidth: 0.2,
             fontSize: "12px",
+            fontWeight: 400,
           }}
         />
         <YAxis
           tickCount={13}
+          axisLine={false}
+          tickLine={false}
           tick={{
-            stroke: "light-grey",
-            strokeWidth: 0.5,
+            stroke: "#676767",
+            strokeWidth: 0.2,
+            fontWeight: 400,
             fontSize: "12px",
           }}
           interval="preserveStartEnd"
           domain={[0, "dataMax + 10"]}
         />
         <Tooltip
+          cursor={true}
           content={<ChartTooltip kpi={kpi} colors={colors} />}
-          wrapperStyle={{
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            border: "0 solid #000",
-            borderRadius: "10px",
-          }}
         />
-        <Area
-          type="monotone"
-          dataKey="value"
-          stroke={colors?.stroke}
-          strokeWidth={3}
-          fill={colors?.fill}
-          dot={{
-            stroke: colors?.stroke,
-            strokeWidth: 3,
-          }}
-        />
-      </AreaChart>
+        <Line
+          activeDot={false}
+          dot={false}
+          type="monotoneX"
+          dataKey={"value"}
+        ></Line>
+      </LineChart>
     </ResponsiveContainer>
   );
 };

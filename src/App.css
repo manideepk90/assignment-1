@@ -74,8 +74,10 @@ body {
 }
 
 .bar-chart-container {
+
   /* Disable shadows for bars by making the shadow transparent */
   .recharts-bar-rectangle {
     filter: drop-shadow(0px 0px 0px transparent);
   }
 }
+
