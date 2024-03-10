@@ -1,30 +1,27 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { CrudFilter, useList } from "@refinedev/core";
 import dayjs from "dayjs";
-import Stats from "../../components/dashboard/Stats";
-import { ResponsiveAreaChart } from "../../components/dashboard/ResponsiveAreaChart";
-import { ResponsiveBarChart } from "../../components/dashboard/ResponsiveBarChart";
-import { TabView } from "../../components/dashboard/TabView";
-import { RecentSales } from "../../components/dashboard/RecentSales";
+import { ResponsiveLineChart } from "../../components/dashboard/ResponsiveLineChart";
 import { IChartDatum, TTab } from "../../interfaces";
 import "./dashboard.css";
-const filters: CrudFilter[] = [
-  {
-    field: "start",
-    operator: "eq",
-    value: dayjs()?.subtract(7, "days")?.startOf("day"),
-  },
-  {
-    field: "end",
-    operator: "eq",
-    value: dayjs().startOf("day"),
-  },
-];
+import Stats from "../../components/dashboard/Stats";
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
-    resource: "dailyRevenue",
-    filters,
+  const [filters, setFilters]: [CrudFilter[], any] = useState([
+    {
+      field: "start",
+      operator: "eq",
+      value: dayjs()?.subtract(7, "days")?.startOf("month"),
+    },
+    {
+      field: "end",
+      operator: "eq",
+      value: dayjs().startOf("day"),
+    },
+  ]);
+
+  const { data: stores } = useList<IChartDatum>({
+    resource: "stores",
   });
 
   const { data: dailyOrders } = useList<IChartDatum>({
@@ -48,65 +45,77 @@ export const Dashboard: React.FC = () => {
       }));
     }, [d]);
   };
-
-  console.log(dailyRevenue);
-  const memoizedRevenueData = useMemoizedChartData(dailyRevenue);
-  const memoizedOrdersData = useMemoizedChartData(dailyOrders);
-  const memoizedNewCustomersData = useMemoizedChartData(newCustomers);
-
-  const tabs: TTab[] = [
-    {
-      id: 0,
-      label: "Daily Revenue",
-      content: (
-        <ResponsiveAreaChart
-          kpi="Daily revenue"
-          data={memoizedRevenueData}
-          colors={{
-            stroke: "rgb(54, 162, 235)",
-            fill: "rgba(54, 162, 235, 0.2)",
-          }}
-        />
-      ),
+  const memorizedOrdersData = useMemoizedChartData(dailyOrders);
+  const tabs: TTab = {
+    id: 0,
+    label: "Daily orders",
+    content: (
+      <ResponsiveLineChart
+        kpi="Daily Orders"
+        data={memorizedOrdersData}
+        colors={{
+          stroke: "rgb(54, 162, 235)",
+          fill: "rgba(54, 162, 235, 0.2)",
+        }}
+      />
+    ),
+    colors: {
+      stroke: "rgb(54, 162, 235)",
+      fill: "rgba(54, 162, 235, 0.2)",
     },
-    {
-      id: 1,
-      label: "Daily Orders",
-      content: (
-        <ResponsiveBarChart
-          kpi="Daily orders"
-          data={memoizedOrdersData}
-          colors={{
-            stroke: "rgb(255, 159, 64)",
-            fill: "rgba(255, 159, 64, 0.7)",
-          }}
-        />
-      ),
-    },
-    {
-      id: 2,
-      label: "New Customers",
-      content: (
-        <ResponsiveAreaChart
-          kpi="New customers"
-          data={memoizedNewCustomersData}
-          colors={{
-            stroke: "rgb(76, 175, 80)",
-            fill: "rgba(54, 162, 235, 0.2)",
-          }}
-        />
-      ),
-    },
-  ];
-
+  };
+  const [expand, setExpand] = useState(true);
+  const handleExpansion = (e: any) => {
+    setExpand((p) => !p);
+  };
   return (
-    <>
-      <TabView
-        tabs={tabs}
-        dailyRevenue={dailyRevenue}
+    <div className="tab-panel">
+      <Stats
+        expanded={expand}
+        handleExpansion={handleExpansion}
+        dailyRevenue={stores}
         dailyOrders={dailyOrders}
         newCustomers={newCustomers}
       />
-    </>
+      <div
+        className="w-full"
+        style={{
+          display: expand ? "flex" : "none",
+        }}
+      >
+        {tabs?.content}
+      </div>
+      <div
+        className="legend"
+        style={{
+          display: expand ? "flex" : "none",
+        }}
+      >
+        <div className="legend-1">
+          <div
+            className="label-icon"
+            style={{
+              border: `1px solid ${tabs.colors?.stroke}`,
+              backgroundColor: tabs.colors?.fill,
+            }}
+          >
+            &nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <p className="date-label">{tabs.label}</p>
+        </div>
+        <div className="legend-1">
+          <div
+            className="label-icon"
+            style={{
+              border: `1px solid ${tabs.colors?.stroke}`,
+              backgroundColor: tabs.colors?.fill,
+            }}
+          >
+            &nbsp;&nbsp;&nbsp;&nbsp;
+          </div>
+          <p className="date-label">{tabs.label}</p>
+        </div>
+      </div>
+    </div>
   );
 };

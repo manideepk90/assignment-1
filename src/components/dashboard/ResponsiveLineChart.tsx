@@ -8,10 +8,10 @@ import {
   LineChart,
   Line,
 } from "recharts";
-import { ChartTooltip } from "../../components/dashboard/ChartTooltip";
+import { ChartTooltip } from "./ChartTooltip";
 import { IChartDatum } from "../../interfaces";
 
-type TResponsiveAreaChartProps = {
+type TResponsiveLineChartProps = {
   kpi: string;
   data: IChartDatum[];
   colors: {
@@ -20,11 +20,11 @@ type TResponsiveAreaChartProps = {
   };
 };
 
-export const ResponsiveAreaChart = ({
+export const ResponsiveLineChart = ({
   kpi,
   data,
   colors,
-}: TResponsiveAreaChartProps) => {
+}: TResponsiveLineChartProps) => {
   return (
     <ResponsiveContainer height={150}>
       <LineChart

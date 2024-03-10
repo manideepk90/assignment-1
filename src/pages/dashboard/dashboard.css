@@ -56,7 +56,6 @@
 }
 
 .stat-title {
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -66,7 +65,7 @@
 }
 
 .stat-value {
-    font-family: 'Inter';
+
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
@@ -113,4 +112,20 @@
     height: 22px;
     background: #F6F6F7;
     border-radius: 2px;
+}
+
+.legend-1 .label-icon {
+    width: 10px;
+    height: 0px;
+    border-radius: 8px;
+}
+
+.legend-1 .date-label {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    color: #70707A;
 }

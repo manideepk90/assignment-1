@@ -40,7 +40,7 @@ function App() {
           resources={[
             {
               name: "dashboard",
-              list: "/dashboard",
+              list: "/orders",
               meta: {
                 icon: <HomeIcon className="h-4 w-4" />,
               },

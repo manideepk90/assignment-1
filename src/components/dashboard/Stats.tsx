@@ -22,17 +22,17 @@ const Stats = ({
     <div className="w-full flex items-center justify-between">
       <div className="w-full flex flex-start items-center">
         <KpiCard
-          title="Weekly Revenue"
-          data={dailyRevenue}
-          formatTotal={(value: number | string) => `$ ${value}`}
+          title="Online store sessions"
+          data={{ data: dailyRevenue }}
+          // formatTotal={(value: number | string) => `${value}`}
         />
         <KpiCard
-          title="Weekly Orders"
+          title="Net return value"
           data={dailyOrders}
           formatTotal={(value: number | string) => `$ ${value}`}
         />
         <KpiCard
-          title="New Customers"
+          title="Total orders"
           data={newCustomers}
           formatTotal={(value: number | string) => `$ ${value}`}
         />

@@ -58,4 +58,8 @@ export type TTab = {
   id: number;
   label: string;
   content: JSX.Element;
+  colors?: {
+    stroke: string;
+    fill: string;
+  };
 };
