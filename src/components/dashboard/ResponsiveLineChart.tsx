@@ -13,7 +13,8 @@ import { IChartDatum } from "../../interfaces";
 
 type TResponsiveLineChartProps = {
   kpi: string;
-  data: IChartDatum[];
+  combinedData: IChartDatum[];
+  // data1: IChartDatum[];
   colors: {
     stroke: string;
     fill: string;
@@ -22,13 +23,13 @@ type TResponsiveLineChartProps = {
 
 export const ResponsiveLineChart = ({
   kpi,
-  data,
+  combinedData,
   colors,
 }: TResponsiveLineChartProps) => {
   return (
     <ResponsiveContainer height={150}>
       <LineChart
-        data={data}
+        data={combinedData}
         height={150}
         margin={{
           top: 10,
@@ -44,7 +45,7 @@ export const ResponsiveLineChart = ({
         />
         <XAxis
           dataKey="date"
-          tickCount={data?.length ?? 0}
+          tickCount={combinedData?.length ?? 0}
           axisLine={false}
           tickLine={false}
           tick={{
@@ -74,8 +75,15 @@ export const ResponsiveLineChart = ({
         <Line
           activeDot={false}
           dot={false}
-          type="monotoneX"
+          strokeDasharray={"4 4"}
+          type="monotone"
           dataKey={"value"}
+        ></Line>
+        <Line
+          activeDot={false}
+          dot={false}
+          type="monotone"
+          dataKey={"value2"}
         ></Line>
       </LineChart>
     </ResponsiveContainer>

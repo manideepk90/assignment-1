@@ -23,8 +23,8 @@ const Stats = ({
       <div className="w-full flex flex-start items-center">
         <KpiCard
           title="Online store sessions"
-          data={{ data: dailyRevenue }}
-          // formatTotal={(value: number | string) => `${value}`}
+          data={dailyRevenue}
+          formatTotal={(value: number | string) => `${value}`}
         />
         <KpiCard
           title="Net return value"
