@@ -28,7 +28,7 @@ const Stats = ({
   ];
   return (
     <div className="w-full flex items-center justify-between">
-      <div className="w-full flex flex-start items-center">
+      <div className="w-full flex flex-start items-center gap-1">
         <KpiCard
           title="Online store sessions"
           data={dailyRevenue}
