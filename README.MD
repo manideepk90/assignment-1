@@ -19,3 +19,10 @@ To run the application in development use
 ```
 npm run dev
 ```
+
+**Screenshots**
+![Screenshot of a loading page](./public/screenshots/loading.png)
+![Screenshot of a dashboard page](./public/screenshots/dashboard.png)
+![Screenshot of a dashboard page with context menu](./public/screenshots/contextmenu.png)
+![Screenshot of a dashboard page with filters](./public/screenshots/optional-filters.png)
+![Screenshot of a dashboard page (Additional)](./public/screenshots/additional-1.png)
