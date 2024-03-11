@@ -32,24 +32,28 @@ const Stats = ({
         <KpiCard
           title="Online store sessions"
           data={dailyRevenue}
+          description="Your online store’s traffic volume, shown in sessions."
           formatTotal={(value: number | string) => `${value}`}
           menu={menuData}
         />
         <KpiCard
           title="Net return value"
           data={dailyOrders}
+          description="Your total net returns in sessions."
           formatTotal={(value: number | string) => `$ ${value}`}
           menu={menuData}
         />
         <KpiCard
           title="Total orders"
           data={newCustomers}
+          description="Your total orders in sessions."
           formatTotal={(value: number | string) => `$ ${value}`}
           menu={menuData}
         />
         <KpiCard
           title="Conversion rate"
           data={newCustomers}
+          description="Your conversation rate in sessions."
           formatTotal={(value: number | string) => `$ ${value}`}
           menu={menuData}
         />
