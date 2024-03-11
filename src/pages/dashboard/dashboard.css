@@ -15,7 +15,6 @@
     transition: .1s ease-in-out transform;
 }
 
-
 .stat-card {
     display: flex;
     flex-direction: column;
@@ -128,4 +127,131 @@
     display: flex;
     align-items: center;
     color: #70707A;
+}
+
+.stat-description {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 10px;
+    position: absolute;
+    top: 30px;
+    gap: 10px;
+    z-index: 10;
+    width: 356px;
+    min-height: 76px;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.stat-description .desc-title {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.stat-description .desc {
+    font-weight: 400;
+    word-wrap: break-word;
+    font-size: 13px;
+    line-height: 146.5%;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.edit-settings {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+    gap: 5px;
+    position: absolute;
+    width: 212px;
+    left: 150px;
+    top: 30px;
+    z-index: 20;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.edit-settings .edit-item {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px 10px;
+    gap: 10px;
+    border-radius: 3px;
+    position: relative;
+}
+
+.help-icon {
+    position: absolute;
+    right: 10px;
+    display: none;
+}
+
+.edit-settings .edit-item p {
+    font-size: 10px;
+    line-height: 12px;
+    display: flex;
+    align-items: center;
+    color: #303030;
+}
+
+.edit-settings .edit-item:hover {
+    background-color: #F1F1F1;
+}
+
+.active {
+    background-color: #F1F1F1;
+}
+
+.edit-settings .active .help-icon {
+    background-color: #F1F1F1;
+    display: block;
+}
+
+.edit-item:hover .help-icon {
+    display: block;
+}
+
+.tab-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    isolation: isolate;
+    padding: 0px;
+    width: 773px;
+    height: 150px;
+    background-color: #E3E3E3;
+    border-radius: 10px
+}
+
+.stat-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 10px;
+    gap: 5px;
+    isolation: isolate;
+    width: 183px;
+    height: 54px;
+    background: #F1F1F1;
+    border-radius: 10px;
+}
+
+.stat-loading .stat-title-loading {
+    width: 124px;
+    height: 15px;
+    background: #D9D9D9;
+    border-radius: 2px;
+}
+
+.stat-loading .stat-value-loading {
+    width: 152px;
+    height: 20px;
+    background: #D9D9D9;
+    border-radius: 2px;
 }

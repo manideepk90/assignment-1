@@ -18,6 +18,14 @@ const Stats = ({
   newCustomers,
   expanded,
 }: TStats) => {
+  const menuData = [
+    "Average Order Value",
+    "Conversion rate",
+    "Gross Sales",
+    "Net return value",
+    "Store search conversion",
+    "Return rate",
+  ];
   return (
     <div className="w-full flex items-center justify-between">
       <div className="w-full flex flex-start items-center">
@@ -25,21 +33,25 @@ const Stats = ({
           title="Online store sessions"
           data={dailyRevenue}
           formatTotal={(value: number | string) => `${value}`}
+          menu={menuData}
         />
         <KpiCard
           title="Net return value"
           data={dailyOrders}
           formatTotal={(value: number | string) => `$ ${value}`}
+          menu={menuData}
         />
         <KpiCard
           title="Total orders"
           data={newCustomers}
           formatTotal={(value: number | string) => `$ ${value}`}
+          menu={menuData}
         />
         <KpiCard
           title="Conversion rate"
           data={newCustomers}
           formatTotal={(value: number | string) => `$ ${value}`}
+          menu={menuData}
         />
       </div>
 
